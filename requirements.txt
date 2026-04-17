@@ -1,5 +1,5 @@
 # This project uses the Python Standard Library.
 # No external dependencies required at this time.
 
-# If you decide to add testing later:
-# pytest==8.0.0
+# testing version
+pytest==8.0.0
