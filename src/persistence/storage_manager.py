@@ -40,3 +40,17 @@ class StorageManager:
 
     def load_config(self):
         return self._load_file("config")
+
+    def generate_id(self, file_key, prefix):
+        data = self._load_file(file_key)
+        counter = 1
+        while True:
+            candidate_id = f"{prefix}-{counter:}"
+            found_match = False
+            for item in data:
+                if item["id"] == candidate_id:
+                    found_match = True
+                    break
+            if not found_match:
+                return candidate_id
+            counter += 1
