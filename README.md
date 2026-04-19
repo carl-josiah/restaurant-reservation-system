@@ -18,11 +18,12 @@ A mini and fun project that incorporates the principles behind Object-Oriented D
 
 #### General Responsibility Assignment Principles (GRASP)
 
-- Controller: The **src/logic/controller.py** file will receive the command instead of the UI **(main.py)** to coordinate the models.
+- Controller: The **src/logic/reservation_controller.py** file will receive the command instead of the UI **(main.py)** to coordinate the models.
 - Information Expert: Every data in a class belongs where it should belong.
-- Creator: The **src/logic/factory.py** file is responsible for "creating" objects, it won't have to worry about how a _Reservation_ is born.
+- Creator: The **src/logic/reservation_factory.py** file is responsible for "creating" objects, it won't have to worry about how a _Reservation_ is born.
 - Low Coupling: The evidence is by the amount of folders and files, each has its own responsibility and does not rely on other files to operate properly.
 - High Cohesion: Every file has one job.
+- Protected Variations: The **src/utils/error_handler.py** file has a function that has the core logic for handling errors
 
 #### SOLID Principles
 
@@ -35,7 +36,8 @@ A mini and fun project that incorporates the principles behind Object-Oriented D
 "Proven" solutions to common problems.
 
 - Singleton: A class only has one instance. The _Restaurant_ class only has one instance.
-- Factory: The **src/logic/factory.py** To generate tables or users without making a mess.
+- Factory: The **src/logic/reservation_factory.py** generate tables or users without making a mess.
+- Data Transfer Object (DTO): The BookRequest class in **src/logic/reservation_controller.py** pass data to reduce _Parameter Bloat_
 
 #### Traceability
 
