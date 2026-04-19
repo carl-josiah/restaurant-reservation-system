@@ -55,12 +55,12 @@ A mini and fun project that incorporates the principles behind Object-Oriented D
 
 | Design Class | Implementation File | Responsibility and Mapping Description |
 | :--- | :--- | :--- |
-| **ReservationController** | `src/logic/reservation_controller.py` | The primary **Control Class**. It coordinates the system workflow (e.g., `make_reservation`, `register_user`) and manages the active session state. |
-| **ReservationFactory** | `src/logic/reservation_factory.py` | A **Service Class** that encapsulates complex creation logic for `Reservation` objects, ensuring clean initialization. |
-| **StorageManager** | `src/persistence/storage_manager.py` | A **Persistence Class** acting as a repository facade. It abstracts JSON I/O and protects business logic from storage changes. |
-| **User, Customer, Staff** | `src/models/user.py` | Implements **Actor-oriented classes** using inheritance. `Customer` and `Staff` extend `User` to handle role-specific parameters. |
-| **Reservation** | `src/models/reservation.py` | An **Entity Class** representing core business data. It acts as the **Information Expert** for the booking lifecycle. |
-| **Table** | `src/models/table.py` | An **Entity Class** representing physical restaurant furniture, holding real-world constraints like capacity and location. |
-| **TimeSlot** | `src/models/time_slot.py` | An **Entity Class** that defines the recurring time windows available for bookings. |
-| **NotificationService** | `src/logic/notification_service.py` | A **Service Class** that promotes **Low Coupling** by decoupling notification triggers from reservation state management. |
-| **Constants** | `src/utils/constants.py` | Centralizes domain terms and keys to ensure string consistency and prevent "magic strings" throughout the codebase. |
+| **ReservationController** | `src/logic/reservation_controller.py` | The primary control class. It coordinates the whole system logic such as make_reservation and register_user and also manages the session state while doing it. |
+| **ReservationFactory** | `src/logic/reservation_factory.py` | The service class that encapsulates the creation logic for Reservation objects. |
+| **StorageManager** | `src/persistence/storage_manager.py` | The persistence class that identifies as the repository facade. It protects the business logic from storage changes and abstracts the json file input and output. |
+| **User, Customer, Staff** | `src/models/user.py` | Implements the actor-oriented classes using inheritance. The Customer and Staff inherited from the User class to handle specific parameters or data. |
+| **Reservation** | `src/models/reservation.py` | An entity class that represents the core business information. It is the information expert. |
+| **Table** | `src/models/table.py` | An entity class that holds the capacity and location of the tables. It is a real-world constraint. |
+| **TimeSlot** | `src/models/time_slot.py` | An entity class that defines the recurring time windows for bookings. |
+| **NotificationService** | `src/logic/notification_service.py` | A service class that supports low coupling since it decouples the notification logic from the reservation state management. |
+| **Constants** | `src/utils/constants.py` | To make it easier to edit terms and keys, to make sure that it is consistent throughout all the files. |
