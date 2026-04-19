@@ -41,7 +41,7 @@ class StorageManager:
     def load_config(self):
         return self._load_file("config")
 
-    def generate_id(self, file_key, prefix):
+    def generate_next_id(self, file_key, prefix):
         data = self._load_file(file_key)
         counter = 1
         while True:
