@@ -3,9 +3,13 @@ class NotificationService:
         self.gateway_ready = True
 
     def send_confirmation(self, reservation):
-        if reservation.customerID:
-            print(f"Confirmation sent for {reservation.reservationID}")
+        customer_id = reservation.get("customerID") if isinstance(reservation, dict) else reservation.customerID
+        res_id = reservation.get("reservationID") if isinstance(reservation, dict) else reservation.reservationID
+        if customer_id:
+            print(f"Confirmation sent for {res_id}")
 
     def send_cancellation(self, reservation):
-        if reservation.customerID:
-            print(f"Cancellation notice sent for {reservation.reservationID}")
+        customer_id = reservation.get("customerID") if isinstance(reservation, dict) else reservation.customerID
+        res_id = reservation.get("reservationID") if isinstance(reservation, dict) else reservation.reservationID
+        if customer_id:
+            print(f"Cancellation notice sent for {res_id}")

@@ -50,11 +50,17 @@ class StorageManager:
     def load_config(self):
         return self._load_file(FILE_CONFIG)
 
+    def save_tables(self, data):
+        self._save_file(FILE_TABLES, data)
+
+    def save_config(self, data):
+        self._save_file(FILE_CONFIG, data)
+
     def generate_next_id(self, file_key, prefix, id_field=FLD_USER_ID):
         data = self._load_file(file_key)
         counter = 1
         while True:
-            candidate_id = f"{prefix}-{counter:}"
+            candidate_id = f"{prefix}-{counter}"
             found_match = False
             for item in data:
                 if item.get(id_field) == candidate_id:

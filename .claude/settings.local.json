@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pip install *)",
+      "Bash(python -c ' *)",
+      "Bash(python -m pytest tests/test_reservation.py -v)",
+      "Bash(python -c \"from src.logic.reservation_controller import ReservationController; c = ReservationController\\(\\); print\\('Import OK, Singleton:', ReservationController\\(\\) is c\\)\")"
+    ]
+  }
+}

@@ -1,3 +1,6 @@
 {
-  "maxPartySize": 20
+    "maxPartySize": 20,
+    "graceMinutes": 15,
+    "minNoticeMinutes": 120,
+    "timeSlotMinutes": 90
 }
