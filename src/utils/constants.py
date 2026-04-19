@@ -29,6 +29,8 @@ PREFIX_TABLE = "TBL"
 STATUS_CONFIRMED = "Confirmed"
 STATUS_ACTIVE = "Active"
 STATUS_CANCELLED = "Cancelled"
+STATUS_COMPLETED = "Completed"
+STATUS_NO_SHOW = "No-show"
 
 # Reservation Types
 TYPE_ONLINE = "Online"

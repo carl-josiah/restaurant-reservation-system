@@ -40,5 +40,13 @@
         "role": "Staff",
         "staffRole": "Admin",
         "id": "USR-5"
+    },
+    {
+        "name": "umar",
+        "email": "omerjamaljn@gmail.com",
+        "password": "$2b$12$sZwUCuPjuaER2AndlAdGMeijMhWqAfstd/tjDWTkAL2VHYAOWs2/C",
+        "phone": "0505263427",
+        "role": "Customer",
+        "id": "USR-6"
     }
 ]

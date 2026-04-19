@@ -40,5 +40,19 @@
         ],
         "customerID": "USR-7",
         "staffID": ""
+    },
+    {
+        "reservationID": "RES-4",
+        "partySize": 3,
+        "status": "Cancelled",
+        "createdAt": "2026-04-19T22:24:59.697953",
+        "reservationType": "Online",
+        "date": "2026-04-19",
+        "startTime": "22:25",
+        "bookedTables": [
+            "TBL-3"
+        ],
+        "customerID": "USR-6",
+        "staffID": ""
     }
 ]
