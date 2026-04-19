@@ -1,4 +1,5 @@
 import re
+import bcrypt
 from datetime import datetime
 
 from src.persistence.storage_manager import StorageManager
@@ -12,6 +13,7 @@ from src.utils.constants import (
     FLD_USER_ID,
     FLD_EMAIL,
     FLD_PASSWORD,
+    FLD_CUST_ID,
     FILE_RESERVATIONS,
     FILE_USERS,
     PREFIX_RES,
@@ -20,7 +22,11 @@ from src.utils.constants import (
     CAT_SUCCESS,
     CAT_ERROR,
     TYPE_ONLINE,
+    TYPE_WALKIN,
     ROLE_CUSTOMER,
+    ROLE_STAFF,
+    STATUS_CONFIRMED,
+    STATUS_CANCELLED,
     STR_SIZE,
     PARTY_SIZE,
 )
@@ -52,11 +58,21 @@ class UserRegistration:
 
 
 class ReservationController:
+    _instance = None
+
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+        return cls._instance
+
     def __init__(self):
+        if hasattr(self, "_initialized"):
+            return
         self.storage = StorageManager()
         self.factory = ReservationFactory()
         self.notifications = NotificationService()
         self.current_user = None
+        self._initialized = True
 
     def _is_not_empty(self, data):
         if data is None:
@@ -218,11 +234,13 @@ class ReservationController:
     def login(self, email, password):
         users = self.storage._load_file(FILE_USERS)
         for u in users:
-            if u.get(FLD_EMAIL) == email and u.get(FLD_PASSWORD) == password:
-                self.current_user = u
-                user_name = u.get(FLD_NAME, "User")
-                show_message(f"Welcome back, {user_name}!", CAT_AUTH)
-                return u
+            if u.get(FLD_EMAIL) == email:
+                stored_hash = u.get(FLD_PASSWORD, "")
+                if bcrypt.checkpw(password.encode(), stored_hash.encode()):
+                    self.current_user = u
+                    user_name = u.get(FLD_NAME, "User")
+                    show_message(f"Welcome back, {user_name}!", CAT_AUTH)
+                    return u
         log_error("Invalid email or password.", CAT_AUTH)
         return None
 
@@ -302,9 +320,87 @@ class ReservationController:
                 )
                 return None
         user_id = self.storage.generate_next_id(FILE_USERS, PREFIX_USER, FLD_USER_ID)
+        hashed = bcrypt.hashpw(reg_data.password.encode(), bcrypt.gensalt()).decode("utf-8")
         new_user_data = vars(reg_data)
+        new_user_data[FLD_PASSWORD] = hashed
         new_user_data[FLD_USER_ID] = user_id
         users.append(new_user_data)
         self.storage._save_file(FILE_USERS, users)
         show_message(f"User {reg_data.name} registered with ID {user_id}", CAT_SUCCESS)
         return new_user_data
+
+    def cancel_reservation(self, reservation_id):
+        if not self.current_user:
+            log_error("Not logged in.", CAT_AUTH)
+            return None
+        reservations = self.storage.load_reservations()
+        target = None
+        for res in reservations:
+            if res.get(FLD_RES_ID) == reservation_id:
+                target = res
+                break
+        if not target:
+            log_error(f"Reservation {reservation_id} not found.", CAT_ERROR)
+            return None
+        user_role = self.current_user.get("role")
+        if user_role != ROLE_STAFF:
+            if target.get(FLD_CUST_ID) != self.current_user.get(FLD_USER_ID):
+                log_error("You can only cancel your own reservations.", CAT_ERROR)
+                return None
+        if target.get("status") != STATUS_CONFIRMED:
+            log_error("Only confirmed reservations can be cancelled.", CAT_ERROR)
+            return None
+        target["status"] = STATUS_CANCELLED
+        self.storage._save_file(FILE_RESERVATIONS, reservations)
+        if target.get(FLD_CUST_ID):
+            self.notifications.send_cancellation(target)
+        show_message(f"Reservation {reservation_id} has been cancelled.", CAT_SUCCESS)
+        return target
+
+    def view_reservation_history(self):
+        if not self.current_user:
+            log_error("Not logged in.", CAT_AUTH)
+            return None
+        reservations = self.storage.load_reservations()
+        user_id = self.current_user.get(FLD_USER_ID)
+        history = [r for r in reservations if r.get(FLD_CUST_ID) == user_id]
+        history.sort(key=lambda r: r.get("date", ""), reverse=True)
+        return history
+
+    def create_walkin_reservation(self, table_ids, party_size):
+        if not self.current_user:
+            log_error("Not logged in.", CAT_AUTH)
+            return None
+        if self.current_user.get("role") != ROLE_STAFF:
+            log_error("Only staff can create walk-in reservations.", CAT_ERROR)
+            return None
+        ok, reason = self._is_valid_party_size(party_size)
+        if not ok:
+            log_error(f"Reservation failed: {reason}", CAT_ERROR)
+            return None
+        today = datetime.now().strftime("%Y-%m-%d")
+        now_time = datetime.now().strftime("%H:%M")
+        if not table_ids or len(table_ids) == 0:
+            table_id = self._get_suitable_table(party_size, today, now_time)
+            if not table_id:
+                log_error("No suitable table available.", CAT_ERROR)
+                return None
+            table_ids = [table_id]
+        for table_id in table_ids:
+            ok, reason = self._is_table_valid_for_party(table_id, party_size)
+            if not ok:
+                log_error(f"Reservation failed: {reason}", CAT_ERROR)
+                return None
+        request = BookingRequest(
+            customer_id=self.current_user.get(FLD_USER_ID),
+            table_ids=table_ids,
+            date=today,
+            start_time=now_time,
+            party_size=party_size,
+            res_type=TYPE_WALKIN,
+        )
+        res_id = self.storage.generate_next_id(FILE_RESERVATIONS, PREFIX_RES, FLD_RES_ID)
+        new_res = self.factory.create_reservation(res_id, request)
+        self.storage.save_reservations(vars(new_res))
+        show_message(f"Walk-in reservation {res_id} created successfully!", CAT_SUCCESS)
+        return new_res

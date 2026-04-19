@@ -8,13 +8,17 @@ A mini and fun project that incorporates the principles behind Object-Oriented D
 
 ### Features
 
-- User registration with input validation
+- User registration with input validation and bcrypt password hashing
 - User login and logout
-- Reservation creation from the CLI
+- Online reservation creation from the CLI
+- Walk-in reservation creation (Staff only)
+- Reservation cancellation
+- View personal reservation history
 - Automatic table selection based on party size
 - Table capacity checks
 - Reservation date and time validation
 - Prevention of double-booking for the same table and time
+- Role-based menus for Customers and Staff
 - Clear error messages for invalid input
 - Success messages for registration and reservations
 - JSON-based data storage for users, tables, reservations, and config data
@@ -47,9 +51,9 @@ A mini and fun project that incorporates the principles behind Object-Oriented D
 
 "Proven" solutions to common problems.
 
-- Singleton: A class only has one instance. The _Restaurant_ class only has one instance.
+- Singleton: ReservationController is implemented as a single coordinating instance per session.
 - Factory: The **src/logic/reservation_factory.py** creates tables or users without making a mess.
-- Data Transfer Object (DTO): The BookingRequest class in **src/logic/reservation_controller.py** pass data to reduce _Parameter Bloat_
+- Data Transfer Object (DTO): The BookingRequest and UserRegistration classes in **src/logic/reservation_controller.py** reduce parameter bloat.
 
 #### Traceability
 

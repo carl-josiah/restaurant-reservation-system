@@ -1,5 +1,2 @@
-# This project uses the Python Standard Library.
-# No external dependencies required at this time.
-
-# testing version
+bcrypt==4.1.2
 pytest==8.0.0

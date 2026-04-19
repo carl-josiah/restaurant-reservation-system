@@ -1,3 +1,9 @@
+"""
+NOTE: TimeSlot is part of the design model (see Section 14 of the report). The current prototype
+simplifies time handling by storing startTime as a string directly on Reservation. TimeSlot is
+retained as a separate class for future expansion.
+"""
+
 from typing import List
 
 

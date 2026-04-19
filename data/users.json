@@ -1,58 +1,44 @@
 [
     {
-        "name": "carl",
-        "email": "test@yahoo.com",
-        "password": "haha",
-        "phone": "h",
+        "name": "Layla",
+        "email": "layla@yahoo.com",
+        "password": "$2b$12$oUcqGmITOhnF3xA4YYpIwOjMRTCZQZlJcSOPjwu4pTfaDtnJfEeIq",
+        "phone": "0512345671",
         "role": "Customer",
         "id": "USR-1"
     },
     {
-        "name": "carl",
-        "email": "carl",
-        "password": "carl",
-        "phone": "carl",
+        "name": "Omar",
+        "email": "omar@yahoo.com",
+        "password": "$2b$12$7IqjlXYSl6iQIDbvcg9K5.florsjIjhqE2crzvCzbICsIZ3Z8QCBC",
+        "phone": "0523456781",
         "role": "Customer",
         "id": "USR-2"
     },
     {
-        "name": "123",
-        "email": "c@yahoo.com",
-        "password": "qweqwe123!",
-        "phone": "0501111111",
+        "name": "Hessa",
+        "email": "hessa@yahoo.com",
+        "password": "$2b$12$FpQCmdJyeRLfILZsC8InWOgJWXIw3suB1bZW8M9B3jHiCtIgU0nn.",
+        "phone": "0534567891",
         "role": "Customer",
         "id": "USR-3"
     },
     {
-        "name": "Carlito",
-        "email": "carlong@yahoo.com",
-        "password": "FunnyPass!1",
-        "phone": "0599999999",
-        "role": "Customer",
+        "name": "Khalid",
+        "email": "khalid@yahoo.com",
+        "password": "$2b$12$l06764Ni3WTY2lYnQAwEeeRu/1uG38Rt2uoTHwvzuHpAayo/O2Jhq",
+        "phone": "0545678901",
+        "role": "Staff",
+        "staffRole": "Regular",
         "id": "USR-4"
     },
     {
-        "name": "carl",
-        "email": "carling@yahoo.com",
-        "password": "Passko!1@asd",
-        "phone": "0512345678",
-        "role": "Customer",
+        "name": "Nora",
+        "email": "nora@yahoo.com",
+        "password": "$2b$12$.nK/Wgsn9c81fadId5pVi.1CDxehled2biNvPpaU5SKYBGy2jbN8y",
+        "phone": "0556789011",
+        "role": "Staff",
+        "staffRole": "Admin",
         "id": "USR-5"
-    },
-    {
-        "name": "pothole",
-        "email": "jcole@yahoo.com",
-        "password": "ColeWorld111!",
-        "phone": "0599999999",
-        "role": "Customer",
-        "id": "USR-6"
-    },
-    {
-        "name": "carl",
-        "email": "lalaland@yahoo.com",
-        "password": "AsCoolAsTalk@1!",
-        "phone": "0512345677",
-        "role": "Customer",
-        "id": "USR-7"
     }
 ]

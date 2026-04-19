@@ -37,6 +37,8 @@ TYPE_WALKIN = "Walk-in"
 # Roles
 ROLE_CUSTOMER = "Customer"
 ROLE_STAFF = "Staff"
+ROLE_REGULAR = "Regular"
+ROLE_ADMIN = "Admin"
 
 # Sizes
 STR_SIZE = 50

@@ -54,7 +54,7 @@ class StorageManager:
         data = self._load_file(file_key)
         counter = 1
         while True:
-            candidate_id = f"{prefix}-{counter:}"
+            candidate_id = f"{prefix}-{counter}"
             found_match = False
             for item in data:
                 if item.get(id_field) == candidate_id:
