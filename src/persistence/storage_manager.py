@@ -1,15 +1,24 @@
 import json
 import os
+from src.utils.constants import (
+    FILE_USERS,
+    FILE_TABLES,
+    FILE_RESERVATIONS,
+    FILE_CONFIG,
+    FLD_USER_ID,
+)
 
 
 class StorageManager:
     def __init__(self):
         self.base_path = os.path.join(os.path.dirname(__file__), "../../data")
+        if not os.path.exists(self.base_path):
+            os.makedirs(self.base_path)
         self.files = {
-            "users": "users.json",
-            "tables": "tables.json",
-            "reservations": "reservations.json",
-            "config": "restaurant_config.json",
+            FILE_USERS: "users.json",
+            FILE_TABLES: "tables.json",
+            FILE_RESERVATIONS: "reservations.json",
+            FILE_CONFIG: "restaurant_config.json",
         }
 
     def _load_file(self, file_key):
@@ -28,27 +37,27 @@ class StorageManager:
             json.dump(data, f, indent=4)
 
     def load_tables(self):
-        return self._load_file("tables")
+        return self._load_file(FILE_TABLES)
 
     def load_reservations(self):
-        return self._load_file("reservations")
+        return self._load_file(FILE_RESERVATIONS)
 
     def save_reservations(self, reservation_data):
         all_reservations = self.load_reservations()
         all_reservations.append(reservation_data)
-        self._save_file("reservations", all_reservations)
+        self._save_file(FILE_RESERVATIONS, all_reservations)
 
     def load_config(self):
-        return self._load_file("config")
+        return self._load_file(FILE_CONFIG)
 
-    def generate_next_id(self, file_key, prefix):
+    def generate_next_id(self, file_key, prefix, id_field=FLD_USER_ID):
         data = self._load_file(file_key)
         counter = 1
         while True:
             candidate_id = f"{prefix}-{counter:}"
             found_match = False
             for item in data:
-                if item["id"] == candidate_id:
+                if item.get(id_field) == candidate_id:
                     found_match = True
                     break
             if not found_match:

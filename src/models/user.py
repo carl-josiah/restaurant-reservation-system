@@ -1,5 +1,5 @@
 class User:
-    """base class btw: inheritance and abstraction"""
+    """base class: inheritance and abstraction"""
 
     def __init__(self, userID: str, name: str, email: str, password: str):
         self.userID = userID

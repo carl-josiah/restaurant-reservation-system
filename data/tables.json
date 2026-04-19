@@ -1,0 +1,16 @@
+[
+  {
+    "tableID": "TBL-1",
+    "tableNumber": 1,
+    "capacity": 2,
+    "location": "Window",
+    "isActive": true
+  },
+  {
+    "tableID": "TBL-2",
+    "tableNumber": 2,
+    "capacity": 4,
+    "location": "Main Hall",
+    "isActive": true
+  }
+]

@@ -1,0 +1,26 @@
+[
+    {
+        "name": "carl",
+        "email": "test@yahoo.com",
+        "password": "haha",
+        "phone": "h",
+        "role": "Customer",
+        "id": "USR-1"
+    },
+    {
+        "name": "carl",
+        "email": "carl",
+        "password": "carl",
+        "phone": "carl",
+        "role": "Customer",
+        "id": "USR-2"
+    },
+    {
+        "name": "123",
+        "email": "c@yahoo.com",
+        "password": "qweqwe123!",
+        "phone": "0501111111",
+        "role": "Customer",
+        "id": "USR-3"
+    }
+]

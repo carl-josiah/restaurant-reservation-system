@@ -1,3 +1,6 @@
+from typing import List
+
+
 class TimeSlot:
     def __init__(self, slotID: str, duration: int, startTime: str, endTime: str):
         self.slotID = slotID

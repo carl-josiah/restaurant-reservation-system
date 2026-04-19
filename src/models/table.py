@@ -1,6 +1,3 @@
-from typing import List
-
-
 class Table:
     def __init__(
         self,

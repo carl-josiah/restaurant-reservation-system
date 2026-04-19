@@ -1,11 +1,12 @@
 import datetime
+from src.utils.constants import STATUS_CONFIRMED, STATUS_ACTIVE, TYPE_ONLINE
 from src.models.reservation import Reservation
 
 
 class ReservationFactory:
     @staticmethod
     def create_reservation(res_id, request):
-        status = "Confirmed" if request.res_type == "Online" else "Active"
+        status = STATUS_CONFIRMED if request.res_type == TYPE_ONLINE else STATUS_ACTIVE
         new_res = Reservation(
             reservationID=res_id,
             partySize=request.party_size,
