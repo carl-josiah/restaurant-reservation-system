@@ -3,84 +3,84 @@
     "tableID": "TBL-1",
     "tableNumber": 1,
     "capacity": 2,
-    "location": "Window",
+    "location": "Indoor",
     "isActive": true
   },
   {
     "tableID": "TBL-2",
     "tableNumber": 2,
     "capacity": 2,
-    "location": "Window",
+    "location": "Outdoor",
     "isActive": true
   },
   {
     "tableID": "TBL-3",
     "tableNumber": 3,
     "capacity": 4,
-    "location": "Main Hall",
+    "location": "Indoor",
     "isActive": true
   },
   {
     "tableID": "TBL-4",
     "tableNumber": 4,
     "capacity": 4,
-    "location": "Main Hall",
+    "location": "Outdoor",
     "isActive": true
   },
   {
     "tableID": "TBL-5",
     "tableNumber": 5,
     "capacity": 4,
-    "location": "Main Hall",
+    "location": "Indoor",
     "isActive": true
   },
   {
     "tableID": "TBL-6",
     "tableNumber": 6,
     "capacity": 6,
-    "location": "Patio",
+    "location": "Indoor",
     "isActive": true
   },
   {
     "tableID": "TBL-7",
     "tableNumber": 7,
     "capacity": 6,
-    "location": "Patio",
+    "location": "Outdoor",
     "isActive": true
   },
   {
     "tableID": "TBL-8",
     "tableNumber": 8,
     "capacity": 8,
-    "location": "VIP",
+    "location": "Outdoor",
     "isActive": true
   },
   {
     "tableID": "TBL-9",
     "tableNumber": 9,
     "capacity": 8,
-    "location": "VIP",
+    "location": "Outdoor",
     "isActive": true
   },
   {
     "tableID": "TBL-10",
     "tableNumber": 10,
     "capacity": 10,
-    "location": "Banquet",
+    "location": "Indoor",
     "isActive": true
   },
   {
     "tableID": "TBL-11",
     "tableNumber": 11,
     "capacity": 12,
-    "location": "Banquet",
+    "location": "Indoor",
     "isActive": true
   },
   {
     "tableID": "TBL-12",
     "tableNumber": 12,
     "capacity": 20,
-    "location": "Private Room",
+    "location": "Indoor",
     "isActive": true
   }
 ]
