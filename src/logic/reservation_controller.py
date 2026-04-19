@@ -178,7 +178,6 @@ class ReservationController:
         ok, reason = self._is_valid_time(time_str)
         if not ok:
             return False, reason
-
         try:
             reservation_dt = datetime.strptime(
                 f"{date_str} {time_str}", "%Y-%m-%d %H:%M"
@@ -238,17 +237,14 @@ class ReservationController:
         if not self.current_user:
             log_error("Reservation failed: No active session.", CAT_AUTH)
             return None
-
         ok, reason = self._is_future_reservation(request.date, request.start_time)
         if not ok:
             log_error(f"Reservation failed: {reason}", CAT_ERROR)
             return None
-
         ok, reason = self._is_valid_party_size(request.party_size)
         if not ok:
             log_error(f"Reservation failed: {reason}", CAT_ERROR)
             return None
-
         if not request.table_ids or len(request.table_ids) == 0:
             table_id = self._get_suitable_table(
                 request.party_size, request.date, request.start_time
@@ -257,20 +253,17 @@ class ReservationController:
                 log_error("Reservation failed: No suitable table available.", CAT_ERROR)
                 return None
             request.table_ids = [table_id]
-
         for table_id in request.table_ids:
             ok, reason = self._is_table_valid_for_party(table_id, request.party_size)
             if not ok:
                 log_error(f"Reservation failed: {reason}", CAT_ERROR)
                 return None
-
             if not self._is_table_available(table_id, request.date, request.start_time):
                 log_error(
                     f"Reservation failed: Table {table_id} is already booked for this time.",
                     CAT_ERROR,
                 )
                 return None
-
         request.customer_id = self.current_user.get(FLD_USER_ID)
         res_id = self.storage.generate_next_id(
             FILE_RESERVATIONS, PREFIX_RES, FLD_RES_ID
