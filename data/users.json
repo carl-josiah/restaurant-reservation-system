@@ -22,5 +22,37 @@
         "phone": "0501111111",
         "role": "Customer",
         "id": "USR-3"
+    },
+    {
+        "name": "Carlito",
+        "email": "carlong@yahoo.com",
+        "password": "FunnyPass!1",
+        "phone": "0599999999",
+        "role": "Customer",
+        "id": "USR-4"
+    },
+    {
+        "name": "carl",
+        "email": "carling@yahoo.com",
+        "password": "Passko!1@asd",
+        "phone": "0512345678",
+        "role": "Customer",
+        "id": "USR-5"
+    },
+    {
+        "name": "pothole",
+        "email": "jcole@yahoo.com",
+        "password": "ColeWorld111!",
+        "phone": "0599999999",
+        "role": "Customer",
+        "id": "USR-6"
+    },
+    {
+        "name": "carl",
+        "email": "lalaland@yahoo.com",
+        "password": "AsCoolAsTalk@1!",
+        "phone": "0512345677",
+        "role": "Customer",
+        "id": "USR-7"
     }
 ]

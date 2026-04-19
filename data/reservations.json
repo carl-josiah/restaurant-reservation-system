@@ -1,0 +1,44 @@
+[
+    {
+        "reservationID": "RES-1",
+        "partySize": 10,
+        "status": "Confirmed",
+        "createdAt": "2026-04-19T18:38:58.301330",
+        "reservationType": "Online",
+        "date": "2026-08-10 05:00",
+        "bookedTables": [
+            "TBL-1"
+        ],
+        "customerID": "",
+        "slotID": "SLOT-1",
+        "staffID": ""
+    },
+    {
+        "reservationID": "RES-2",
+        "partySize": 1,
+        "status": "Confirmed",
+        "createdAt": "2026-04-19T19:04:14.097205",
+        "reservationType": "Online",
+        "date": "2027-06-03 03:00",
+        "bookedTables": [
+            "TBL-1"
+        ],
+        "customerID": "",
+        "slotID": "SLOT-1",
+        "staffID": ""
+    },
+    {
+        "reservationID": "RES-3",
+        "partySize": 10,
+        "status": "Confirmed",
+        "createdAt": "2026-04-19T19:17:43.053901",
+        "reservationType": "Online",
+        "date": "2026-10-9",
+        "startTime": "14:00",
+        "bookedTables": [
+            "TBL-10"
+        ],
+        "customerID": "USR-7",
+        "staffID": ""
+    }
+]

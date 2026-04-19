@@ -14,7 +14,8 @@ class ReservationFactory:
             createdAt=datetime.datetime.now().isoformat(),
             reservationType=request.res_type,
             date=request.date,
+            startTime=request.start_time,
         )
         new_res.bookedTables = request.table_ids
-        new_res.slotID = request.slot_id
+        new_res.customerID = request.customer_id
         return new_res

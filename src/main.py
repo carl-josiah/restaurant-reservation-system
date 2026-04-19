@@ -11,7 +11,6 @@ from src.logic.reservation_controller import (
 from src.utils.constants import (
     CAT_ERROR,
     FLD_NAME,
-    PREFIX_TABLE,
     TYPE_ONLINE,
 )
 from src.utils.error_handler import log_error
@@ -50,6 +49,8 @@ def main():
             elif choice == "3":
                 print("\nThank you for using the system. Goodbye!")
                 break
+            else:
+                log_error("Invalid option selected.", CAT_ERROR)
         else:
             user_name = controller.current_user.get(FLD_NAME, "User")
             print(f"\n[ WELCOME, {user_name.upper()} ]")
@@ -59,7 +60,8 @@ def main():
             choice = input("\nSelect an option: ")
             if choice == "1":
                 print("\n--- New Reservation ---")
-                date = input("Enter Date (YYYY-MM-DD): ")
+                reservation_date = input("Enter Date (YYYY-MM-DD): ")
+                start_time = input("Enter Start Time (HH:MM): ")
 
                 try:
                     party_input = input("Enter Party Size: ")
@@ -67,9 +69,9 @@ def main():
 
                     request = BookingRequest(
                         customer_id=None,
-                        table_ids=[f"{PREFIX_TABLE}-1"],
-                        slot_id="SLOT-1",
-                        date=date,
+                        table_ids=[],
+                        date=reservation_date.strip(),
+                        start_time=start_time.strip(),
                         party_size=party_size,
                         res_type=TYPE_ONLINE,
                     )
@@ -80,9 +82,9 @@ def main():
                 controller.logout()
             elif choice == "3":
                 print("\nClosing System...")
+                break
             else:
                 log_error("Invalid option selected.", CAT_ERROR)
-            sys.exit()
 
 
 if __name__ == "__main__":

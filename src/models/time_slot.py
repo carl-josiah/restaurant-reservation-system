@@ -7,6 +7,4 @@ class TimeSlot:
         self.duration = duration
         self.startTime = startTime
         self.endTime = endTime
-        self.reservations: List[str] = (
-            []
-        )  # handle the '0..*' relationship to reservation
+        self.reservations: List[str] = []
